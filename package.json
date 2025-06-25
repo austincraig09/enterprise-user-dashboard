@@ -1,0 +1,33 @@
+{
+  "name": "enterprise-dashboard",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix frontend\" \"npm run dev --prefix backend\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austincraig09/enterprise-dashboard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/austincraig09/enterprise-dashboard/issues"
+  },
+  "homepage": "https://github.com/austincraig09/enterprise-dashboard#readme",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "brew": "^0.0.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.13.1",
+    "react-router-dom": "^7.4.1"
+  }
+}
