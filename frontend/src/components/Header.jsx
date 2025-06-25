@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import ImpactLogo from "../assets/Impact-logo-small-min.png";
-import KAGLogoMain from "../assets/kag-main-logo.png";
+import PushToProdLogo from "../assets/kag-main-logo.png";
 
 export default function Header({ user }) {
   const navigate = useNavigate();
@@ -24,16 +23,14 @@ export default function Header({ user }) {
       <img
         // TODO: Can add link to client logged-out site
         // onClick={() => {
-        //   navigate("https://www.myclientwebsite.com/");
+        //   navigate("https://www.client-logged-out-site.com/");
         //   setDropdownOpen(false);
         // }}
-        src={KAGLogoMain}
+        src={PushToProdLogo}
         alt="Push to Prod, LLC Logo"
         className="h-16"
       />
       <div className="flex items-center gap-16 ml-auto text-3xl font-bold">
-        <img src={ImpactLogo} alt="Impact Solutions Logo" className="h-24" />
-
         {/* User Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
