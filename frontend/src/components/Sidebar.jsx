@@ -1,145 +1,10 @@
-// import { useState, useEffect, useRef } from "react";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import { finalMileItems, truckloadItems } from "../data/navigationData";
-
-// export default function Sidebar() {
-//   const hoverTimeoutRef = useRef(null);
-//   const location = useLocation();
-//   const navigate = useNavigate();
-
-//   const [openSection, setOpenSection] = useState(() => {
-//     if (location.pathname.startsWith("/truckload")) return "truckload";
-//     return "final-mile";
-//   });
-
-//   const isDashboardActive = location.pathname === "/dashboard";
-
-//   useEffect(() => {
-//     if (
-//       location.pathname === "/dashboard" ||
-//       location.pathname === "/profile"
-//     ) {
-//       setOpenSection(null);
-//     }
-//   }, [location.pathname]);
-
-//   const handleNavClick = (base, label) => {
-//     const route = label.toLowerCase().replace(/[^a-z0-9]/g, "-");
-//     const fullPath = `/${base}/${route}`;
-//     if (location.pathname === fullPath) return;
-//     navigate(`/${base}/${route}`);
-//     setOpenSection(null);
-//   };
-
-//   const renderItems = (items, basePath) =>
-//     items.map((item, index) => {
-//       const slug = item.toLowerCase().replace(/[^a-z0-9]/g, "-");
-//       const path = `/${basePath}/${slug}`;
-//       const isActive = location.pathname === path;
-//       return (
-//         <div
-//           key={index}
-//           onClick={() => handleNavClick(basePath, item)}
-//           className={`ml-4 my-1 px-2 py-1 text-base rounded cursor-pointer transition
-//                 ${
-//                   isActive
-//                     ? "bg-sidebarHighlight font-semibold text-white"
-//                     : "hover:bg-sidebarHighlight hover:text-white text-white"
-//                 }`}
-//         >
-//           {item}
-//         </div>
-//       );
-//     });
-
-//   return (
-//     <div className="w-64 fixed top-32 left-0 h-[calc(100vh-6rem)] bg-sidebar text-white font-sans flex flex-col overflow-y-auto z-40">
-//       <div
-//         onClick={() => navigate("/dashboard")}
-//         className={`text-2xl font-bold text-center py-3 cursor-pointer transition hover:bg-sidebarHighlight border-b border-white/ z-10
-//         ${
-//           isDashboardActive
-//             ? "bg-sidebarHighlight"
-//             : "hover:bg-sidebarHighlight"
-//         }`}
-//       >
-//         <div>Dashboard</div>
-//       </div>
-
-//       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-20">
-//         {/* Final Mile Block */}
-//         <div
-//           className="relative"
-//           onMouseEnter={() => {
-//             clearTimeout(hoverTimeoutRef.current);
-//             setOpenSection("final-mile");
-//           }}
-//           onMouseLeave={() => {
-//             hoverTimeoutRef.current = setTimeout(() => {
-//               setOpenSection(null);
-//             }, 200);
-//           }}
-//         >
-//           <div
-//             className="text-lg font-semibold cursor-pointer px-2 py-1 rounded transition hover:bg-sidebarHighlight"
-//             onClick={() => {
-//               const slug = finalMileItems[0]
-//                 .toLowerCase()
-//                 .replace(/[^a-z0-9]/g, "-");
-//               navigate(`/final-mile/${slug}`);
-//               setOpenSection(null);
-//             }}
-//           >
-//             {openSection === "final-mile" ? "▾ Final Mile" : "▸ Final Mile"}
-//           </div>
-
-//           {openSection === "final-mile" && (
-//             <div className="mt-1 transition-all duration-500 ease-in-out">
-//               {renderItems(finalMileItems, "final-mile")}
-//             </div>
-//           )}
-//         </div>
-
-//         {/* Truckload Block */}
-//         <div
-//           className="relative mt-4"
-//           onMouseEnter={() => {
-//             clearTimeout(hoverTimeoutRef.current);
-//             setOpenSection("truckload");
-//           }}
-//           onMouseLeave={() => {
-//             hoverTimeoutRef.current = setTimeout(() => {
-//               setOpenSection(null);
-//             }, 200);
-//           }}
-//         >
-//           <div
-//             className="text-lg font-semibold cursor-pointer px-2 py-1 rounded transition hover:bg-sidebarHighlight"
-//             onClick={() => {
-//               const slug = truckloadItems[0]
-//                 .toLowerCase()
-//                 .replace(/[^a-z0-9]/g, "-");
-//               navigate(`/truckload/${slug}`);
-//               setOpenSection(null);
-//             }}
-//           >
-//             {openSection === "truckload" ? "▾ Truckload" : "▸ Truckload"}
-//           </div>
-
-//           {openSection === "truckload" && (
-//             <div className="mt-1 transition-all duration-500 ease-in-out">
-//               {renderItems(truckloadItems, "truckload")}
-//             </div>
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
 import { useState, useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { finalMileItems, truckloadItems } from "../data/navigationData";
+import {
+  serviceOptions,
+  menuOneItems,
+  menuTwoItems,
+} from "../data/navigationData";
 
 export default function Sidebar() {
   const hoverTimeoutRef = useRef(null);
@@ -147,14 +12,16 @@ export default function Sidebar() {
   const navigate = useNavigate();
 
   const [openSection, setOpenSection] = useState(() => {
-    if (location.pathname.startsWith("/truckload")) return "truckload";
-    if (location.pathname.startsWith("/final-mile")) return "final-mile";
+    if (location.pathname.startsWith("/services")) return "services";
+    if (location.pathname.startsWith("/menuOne")) return "menuOne";
+    if (location.pathname.startsWith("/menuTwo")) return "menuTwo";
     return null;
   });
 
   const isDashboardActive = location.pathname === "/dashboard";
-  const isFinalMileActive = location.pathname.startsWith("/final-mile");
-  const isTruckloadActive = location.pathname.startsWith("/truckload");
+  const isServicesActive = location.pathname.startsWith("/services");
+  const isMenuOneActive = location.pathname.startsWith("/menuOne");
+  const isMenuTwoActive = location.pathname.startsWith("/menuTwo");
 
   useEffect(() => {
     if (
@@ -178,15 +45,18 @@ export default function Sidebar() {
       const slug = item.toLowerCase().replace(/[^a-z0-9]/g, "-");
       const path = `/${basePath}/${slug}`;
       const isActive = location.pathname === path;
+
       return (
         <div
           key={index}
           onClick={() => handleNavClick(basePath, item)}
-          className={`ml-4 my-1 px-2 py-1 text-base rounded cursor-pointer transition 
+          // className={`ml-4 my-1 px-2 py-1 text-base rounded cursor-pointer transition font-semibold
+          // TODO: Decide if I want the rounded corners or not
+          className={`ml-4 my-1 px-2 py-1 text-base cursor-pointer transition font-semibold
             ${
               isActive
-                ? "bg-sidebarHighlight font-semibold text-white"
-                : "hover:bg-sidebarHighlight hover:text-white text-white"
+                ? "bg-sidebarHighlight text-black"
+                : "hover:bg-sidebarHighlight hover:text-black"
             }`}
         >
           {item}
@@ -195,26 +65,65 @@ export default function Sidebar() {
     });
 
   return (
-    <div className="w-64 fixed top-32 left-0 h-[calc(100vh-6rem)] bg-sidebar text-white font-sans flex flex-col overflow-y-auto z-40">
+    <div className="w-64 fixed top-32 left-0 h-[calc(100vh-6rem)] bg-sidebar font-sans flex flex-col overflow-y-auto z-40">
       <div
         onClick={() => navigate("/dashboard")}
-        className={`text-2xl font-bold text-center py-3 cursor-pointer transition hover:bg-sidebarHighlight border-b border-white/ z-10 ${
-          isDashboardActive ? "bg-sidebarHighlight" : ""
-        }`}
+        // TODO: Decide if I want a highlight while selected
+        // className={`text-2xl font-bold text-center py-3 cursor-pointer transition border-b border-t border-white z-10
+        // TODO: Decide if I want a border
+        className={`text-2xl font-bold text-center py-3 cursor-pointer transition z-10 
+          ${
+            isDashboardActive
+              ? "bg-sidebarHighlight text-black"
+              : "hover:bg-sidebarHighlight hover:text-black"
+          }`}
       >
-        <div>Dashboard</div>
+        Home
       </div>
-
       <div className="flex-1 overflow-y-auto px-4 pt-4 pb-20">
-        {/* Final Mile Block */}
+        {/* Home Button Block */}
+        {/* <div
+          className="relative"
+          onMouseEnter={() => {
+            clearTimeout(hoverTimeoutRef.current);
+            setOpenSection("services");
+          }}
+          onMouseLeave={() => {
+            if (!isDashboardActive) {
+              hoverTimeoutRef.current = setTimeout(() => {
+                setOpenSection(null);
+              }, 700);
+            }
+          }}
+        >
+          <div
+            className={`text-xl font-bold text-center py-3 transition 
+    ${
+      isDashboardActive
+        ? "bg-sidebarHighlight text-black"
+        : "hover:bg-sidebarHighlight hover:text-black"
+    }`}
+            onClick={() => navigate("/dashboard")}
+          >
+            Home
+          </div>
+        </div> */}
+        {/* -----------------------------  */}
+        {/* -----------------------------  */}
+        {/* -----------------------------  */}
+        {/* TODO: Look into getting rid of the 'Services' dropdown, and display menu options in static list */}
+        {/* -----------------------------  */}
+        {/* -----------------------------  */}
+        {/* -----------------------------  */}
+        {/* Services Block */}
         <div
           className="relative"
           onMouseEnter={() => {
             clearTimeout(hoverTimeoutRef.current);
-            setOpenSection("final-mile");
+            setOpenSection("services");
           }}
           onMouseLeave={() => {
-            if (!isFinalMileActive) {
+            if (!isServicesActive) {
               hoverTimeoutRef.current = setTimeout(() => {
                 setOpenSection(null);
               }, 700);
@@ -222,40 +131,81 @@ export default function Sidebar() {
           }}
         >
           <div
-            className={`text-lg font-semibold cursor-pointer px-2 py-1 rounded transition ${
-              isFinalMileActive
-                ? "bg-sidebarHighlight"
-                : "hover:bg-sidebarHighlight"
-            }`}
+            className={`text-lg font-semibold cursor-pointer px-2 py-3 transition 
+    ${
+      isServicesActive
+        ? "bg-sidebarHighlight text-black"
+        : "hover:bg-sidebarHighlight hover:text-black"
+    }`}
             onClick={() => {
-              const slug = finalMileItems[0]
+              const slug = serviceOptions[0]
                 .toLowerCase()
                 .replace(/[^a-z0-9]/g, "-");
-              navigate(`/final-mile/${slug}`);
+              navigate(`/services/${slug}`);
               setOpenSection(null);
             }}
           >
-            {openSection === "final-mile" || isFinalMileActive
-              ? "▾ Final Mile"
-              : "▸ Final Mile"}
+            {openSection === "services" || isServicesActive
+              ? "▾ Services"
+              : "▸ Services"}
           </div>
 
-          {(openSection === "final-mile" || isFinalMileActive) && (
+          {(openSection === "services" || isServicesActive) && (
             <div className="mt-1 transition-all duration-500 ease-in-out">
-              {renderItems(finalMileItems, "final-mile")}
+              {renderItems(serviceOptions, "services")}
+            </div>
+          )}
+        </div>
+        {/* Menu Nav One Block */}
+        <div
+          className="relative"
+          onMouseEnter={() => {
+            clearTimeout(hoverTimeoutRef.current);
+            setOpenSection("menuOne");
+          }}
+          onMouseLeave={() => {
+            if (!isMenuOneActive) {
+              hoverTimeoutRef.current = setTimeout(() => {
+                setOpenSection(null);
+              }, 700);
+            }
+          }}
+        >
+          <div
+            className={`text-lg font-semibold cursor-pointer px-2 py-3 transition ${
+              isMenuOneActive
+                ? "bg-sidebarHighlight text-black"
+                : "hover:bg-sidebarHighlight hover:text-black"
+            }`}
+            onClick={() => {
+              const slug = menuOneItems[0]
+                .toLowerCase()
+                .replace(/[^a-z0-9]/g, "-");
+              navigate(`/menuOne/${slug}`);
+              setOpenSection(null);
+            }}
+          >
+            {openSection === "menuOne" || isMenuOneActive
+              ? "▾ Menu Group One"
+              : "▸ Menu Group One"}
+          </div>
+
+          {(openSection === "menuOne" || isMenuOneActive) && (
+            <div className="mt-1 transition-all duration-500 ease-in-out">
+              {renderItems(menuOneItems, "menuOne")}
             </div>
           )}
         </div>
 
-        {/* Truckload Block */}
+        {/* Menu Nav Two BlockBlock */}
         <div
           className="relative mt-4"
           onMouseEnter={() => {
             clearTimeout(hoverTimeoutRef.current);
-            setOpenSection("truckload");
+            setOpenSection("menuTwo");
           }}
           onMouseLeave={() => {
-            if (!isTruckloadActive) {
+            if (!isMenuTwoActive) {
               hoverTimeoutRef.current = setTimeout(() => {
                 setOpenSection(null);
               }, 700);
@@ -263,27 +213,27 @@ export default function Sidebar() {
           }}
         >
           <div
-            className={`text-lg font-semibold cursor-pointer px-2 py-1 rounded transition ${
-              isTruckloadActive
-                ? "bg-sidebarHighlight"
-                : "hover:bg-sidebarHighlight"
+            className={`text-lg font-semibold cursor-pointer px-2 py-3 transition ${
+              isMenuTwoActive
+                ? "bg-sidebarHighlight text-black"
+                : "hover:bg-sidebarHighlight hover:text-black"
             }`}
             onClick={() => {
-              const slug = truckloadItems[0]
+              const slug = menuTwoItems[0]
                 .toLowerCase()
                 .replace(/[^a-z0-9]/g, "-");
-              navigate(`/truckload/${slug}`);
+              navigate(`/menuTwo/${slug}`);
               setOpenSection(null);
             }}
           >
-            {openSection === "truckload" || isTruckloadActive
-              ? "▾ Truckload"
-              : "▸ Truckload"}
+            {openSection === "menuTwo" || isMenuTwoActive
+              ? "▾ Menu Group Two"
+              : "▸ Menu Group Two"}
           </div>
 
-          {(openSection === "truckload" || isTruckloadActive) && (
+          {(openSection === "menuTwo" || isMenuTwoActive) && (
             <div className="mt-1 transition-all duration-500 ease-in-out">
-              {renderItems(truckloadItems, "truckload")}
+              {renderItems(menuTwoItems, "menuTwo")}
             </div>
           )}
         </div>

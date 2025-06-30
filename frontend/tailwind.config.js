@@ -11,11 +11,29 @@ export default {
     },
     extend: {
       colors: {
-        sidebar: "#183642",
-        sidebarHighlight: "#843c44",
-        accent: "#8b3e3e",
-        headerGray: "#ccd3d1",
+        sidebar: "#1E1E1E",
+        // sidebar: "#F6F3EF",
+        sidebarHighlight: "#F6F3EF",
+        // sidebarHighlight: "#1E1E1E",
+        sidebarHighlightText: "#1E1E1E",
+        // sidebarHighlightText: "#1E1E1E",
+        accent: "#FFFFFF",
+        // accent: "#1E1E1E",
+        // headerGray: "#1E1E1E",
+        headerGray: "#F6F3EF",
       },
+      // colors: {
+      //   // sidebar: "#1E1E1E",
+      //   sidebar: "#F6F3EF",
+      //   // sidebarHighlight: "#ECF0F1",
+      //   sidebarHighlight: "#1E1E1E",
+      //   // sidebarHighlightText: "#1E1E1E",
+      //   sidebarHighlightText: "#1E1E1E",
+      //   // accent: "#FFFFFF",
+      //   accent: "#1E1E1E",
+      //   // headerGray: "#1E1E1E",
+      //   headerGray: "#F6F3EF",
+      // },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
       },
@@ -23,3 +41,4 @@ export default {
   },
   plugins: [],
 };
+// Off-black: #2A2A2A

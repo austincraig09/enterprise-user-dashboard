@@ -6,8 +6,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
-import FinalMilePage from "./pages/FinalMilePage";
-import TruckloadPage from "./pages/TruckloadPage";
+import MenuNavigationOnePage from "./pages/MenuNavigationOne";
+import MenuNavigationTwoPage from "./pages/MenuNavigationTwo";
+import ServicesPage from "./pages/Services";
 
 export default function App() {
   const { isAuthenticated, loading } = useAuth();
@@ -28,8 +29,9 @@ export default function App() {
       {/*TODO: Wrap all of the authenticated routes in one "isAuthenticated" check */}
       <Route element={isAuthenticated ? <Layout /> : <Navigate to="/login" />}>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/final-mile/:section" element={<FinalMilePage />} />
-        <Route path="/truckload/:section" element={<TruckloadPage />} />
+        <Route path="/services/:section" element={<ServicesPage />} />
+        <Route path="/menuOne/:section" element={<MenuNavigationOnePage />} />
+        <Route path="/menuTwo/:section" element={<MenuNavigationTwoPage />} />
         <Route path="/profile" element={<Profile />} />
       </Route>
       <Route path="*" element={<p>404</p>} />

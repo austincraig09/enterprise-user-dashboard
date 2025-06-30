@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import PushToProdLogo from "../assets/kag-main-logo.png";
+import PushToProdLogo from "../assets/push-to-prod-small.png";
 
 export default function Header({ user }) {
   const navigate = useNavigate();
@@ -28,22 +28,26 @@ export default function Header({ user }) {
         // }}
         src={PushToProdLogo}
         alt="Push to Prod, LLC Logo"
-        className="h-16"
+        className="h-12"
       />
       <div className="flex items-center gap-16 ml-auto text-3xl font-bold">
         {/* User Dropdown */}
         <div className="relative" ref={dropdownRef}>
           <button
-            className="text-lg bg-sidebar hover:bg-sidebarHighlight text-white px-4 py-1 rounded font-semibold"
+            // className="text-lg bg-sidebar hover:bg-sidebarHighlight text-white px-4 py-1 rounded font-semibold"
+            // TODO: Decide if I want the rounded corners or not
+            className="text-lg bg-sidebarHighlight hover:bg-sidebarHighlightText text-black hover:text-white px-4 py-1 font-semibold"
             onClick={() => setDropdownOpen((prev) => !prev)}
           >
             {user?.email || "User"}
           </button>
 
           {dropdownOpen && (
-            <div className="text-lg absolute left-0 mt-2 min-w-full bg-white border border-gray-200 rounded shadow-md z-50">
+            // <div className="text-lg absolute left-0 mt-2 min-w-full bg-white border border-gray-200 rounded shadow-md z-50">
+            // TODO: Decide if I want the rounded corners or not
+            <div className="text-lg absolute mt-2 bg-white border min-w-half border-gray-200 shadow-md z-50">
               <button
-                className="w-full text-left px-4 py-2 text-gray-800 hover:bg-gray-100"
+                className="w-full px-4 py-2 text-gray-800 hover:bg-gray-100"
                 onClick={() => {
                   navigate("/profile");
                   setDropdownOpen(false);
@@ -52,7 +56,7 @@ export default function Header({ user }) {
                 Profile
               </button>
               <button
-                className="w-full text-left px-4 py-2 text-red-600 hover:bg-gray-100"
+                className="w-full px-4 py-2 text-red-600 hover:bg-gray-100"
                 onClick={() => {
                   navigate("/logout");
                   setDropdownOpen(false);

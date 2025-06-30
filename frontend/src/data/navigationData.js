@@ -1,23 +1,31 @@
-export const finalMileItems = [
-  "Seminars",
-  "Recruiting",
-  "FADV",
-  "Advertising/Media",
-  "Retention",
-  "eLearning",
-  "Safety Trainer Hub",
-  "Entry Level Driver Training",
-  "Driver Finisher",
-  "My Drivers (DQ Files)",
+export const menuOneItems = [
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
 ];
-
-export const truckloadItems = [
-  "Seminars",
-  "Recruiting",
-  "Advertising/Media",
-  "Retention",
-  "eLearning",
-  "My Drivers (DQ Files)",
-  "Driver Finisher Program",
-  "Entry Level Driver Training",
+export const menuTwoItems = [
+  "Item 1",
+  "Item 2",
+  "Item 3",
+  "Item 4",
+  "Item 5",
+  "Item 6",
+  "Item 7",
+  "Item 8",
+  "Item 9",
+  "Item 10",
+];
+export const serviceOptions = [
+  "Contract Software Development",
+  "Website Design",
+  "Consulting",
+  "Item 4",
+  "Item 5",
 ];

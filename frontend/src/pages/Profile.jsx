@@ -56,7 +56,9 @@ export default function Profile() {
               onChange={(e) => setEmail(e.target.value)}
               disabled={!isEditingEmail}
               required
-              className={`w-full px-3 py-2 border rounded ${
+              // className={`w-full px-3 py-2 border rounded ${
+              // TODO: Decide if I want the rounded corners or not
+              className={`w-full px-3 py-2 border ${
                 isEditingEmail ? "bg-white" : "bg-gray-200"
               }`}
             />
@@ -80,7 +82,9 @@ export default function Profile() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border rounded"
+              // className="w-full px-3 py-2 border rounded"
+              // TODO: Decide if I want the rounded corners or not
+              className="w-full px-3 py-2 border"
               placeholder="New password"
             />
           ) : (
@@ -98,7 +102,9 @@ export default function Profile() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-sidebarHighlight text-white font-semibold py-2 px-4 rounded hover:bg-accent transition"
+          // className="w-full bg-sidebarHighlight text-white font-semibold py-2 px-4 rounded hover:bg-accent transition"
+          // TODO: Decide if I want the rounded corners or not
+          className="w-full bg-sidebarHighlight text-white font-semibold py-2 px-4 hover:bg-accent transition"
           onClick={() => navigate("/dashboard")}
         >
           {loading ? "Updating..." : "Update Profile"}
